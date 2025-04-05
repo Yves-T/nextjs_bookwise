@@ -5,7 +5,9 @@ import prisma from "@/database/client";
 import { hash } from "bcryptjs";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
+import config from "../config";
 import ratelimit from "../ratelimit";
+import { workflowClient } from "../workflow";
 
 export const signInWithCredentials = async (
   params: Pick<AuthCredentials, "email" | "password">
@@ -64,6 +66,14 @@ export const signUp = async (params: AuthCredentials) => {
         universityCard,
         status: "PENDING",
         role: "USER",
+      },
+    });
+
+    await workflowClient.trigger({
+      url: `${config.env.prodApiEndpoint}/api/workflow/onboarding`,
+      body: {
+        email,
+        fullName,
       },
     });
 
