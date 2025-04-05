@@ -1,0 +1,38 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum borrow_status {
+  BORROWED
+  RETURNED
+}
+
+enum role {
+  USER
+  ADMIN
+}
+
+enum status {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
+    // id: uuid("id").notNull().primaryKey().defaultRandom().unique(),
+model User {
+  id Int @id @default(autoincrement())
+  fullName String @db.VarChar(200)
+  email String @unique
+  universityId Int @unique
+  password String
+  universityCard String
+  status status
+  role role
+  lastActivityDate DateTime @default(now())
+  createdAt DateTime @default(now()) @db.Timestamptz()
+}
