@@ -22,7 +22,7 @@ import {
 } from "react-hook-form";
 import { toast } from "sonner";
 import { ZodType } from "zod";
-import ImageUpload from "./ImageUpload";
+import FileUpload from "./FileUpload";
 import { Input } from "./ui/input";
 
 interface Props<T extends FieldValues> {
@@ -63,11 +63,17 @@ const AuthForm = <T extends FieldValues>({
         description: isSignIn
           ? "You have successfully signed in"
           : "You have successfully signed up",
+        classNames: {
+          description: "!text-dark-600",
+        },
       });
       router.push("/");
     } else {
       toast.error(`Error ${isSignIn ? "siging in" : "signing up"}`, {
         description: result.error ?? "An error occured",
+        classNames: {
+          description: "!text-dark-600",
+        },
       });
     }
   };
@@ -99,7 +105,14 @@ const AuthForm = <T extends FieldValues>({
                   </FormLabel>
                   <FormControl>
                     {field.name === "universityCard" ? (
-                      <ImageUpload onFileChange={field.onChange} />
+                      <FileUpload
+                        type="image"
+                        accept="image/*"
+                        placeholder="Upload your ID"
+                        folder="ids"
+                        variant="dark"
+                        onFileChange={field.onChange}
+                      />
                     ) : (
                       <Input
                         required

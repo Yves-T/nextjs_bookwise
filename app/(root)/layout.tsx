@@ -35,7 +35,7 @@ const Layout = async ({ children }: { children: ReactNode }) => {
       where: {
         id: parseInt(session?.user?.id),
       },
-      data: { lastActivityDate: new Date().toISOString().slice(0, 10) },
+      data: { lastActivityDate: new Date().toISOString() },
     });
   });
 

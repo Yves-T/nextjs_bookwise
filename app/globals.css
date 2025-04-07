@@ -7,9 +7,15 @@
   --color-primary-100: #e7c9a5;
   --color-light-100: #d6e0ff;
   --color-light-200: #eed1ac;
+  --color-light-300: #f8f8ff;
   --color-light-400: #edf1f1;
+  --color-light-500: #8d8d8d;
+  --color-light-600: #f9fafb;
+  --color-light-700: #e2e8f0;
+  --color-light-800: #f8fafc;
   --color-dark-100: #16191e;
   --color-dark-300: #232839;
+  --color-dark-400: #1e293b;
   --color-dark-600: #333c5c;
 }
 
@@ -258,4 +264,28 @@
 
 .upload-filename {
   @apply mt-1 text-center text-xs;
+}
+
+.progress {
+  @apply rounded-full bg-green-800 p-0.5 text-center font-bebas-neue text-[8px] font-bold leading-none text-light-100;
+}
+
+.book-details {
+  @apply lg:mt-36 mt-16 mb-20 flex flex-col gap-16 lg:flex-row;
+}
+
+.book-details h3 {
+  @apply text-xl font-semibold text-primary;
+}
+
+#book-ticket #book-details div {
+  @apply space-y-1 rounded-md border border-light-100/10 p-3;
+}
+
+#book-ticket #book-details div p:first-child {
+  @apply text-xs text-light-700;
+}
+
+#book-ticket #book-details div p:last-child {
+  @apply text-sm font-bold text-white;
 }
