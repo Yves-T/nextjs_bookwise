@@ -1,5 +1,6 @@
 import { auth } from "@/auth";
 import { Toaster } from "@/components/ui/sonner";
+import { Analytics } from "@vercel/analytics/next";
 import type { Metadata } from "next";
 import { SessionProvider } from "next-auth/react";
 import localFont from "next/font/local";
@@ -38,6 +39,7 @@ const RootLayout = async ({ children }: { children: ReactNode }) => {
         >
           {children}
           <Toaster />
+          <Analytics />
         </body>
       </SessionProvider>
     </html>
